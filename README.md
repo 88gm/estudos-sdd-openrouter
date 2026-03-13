@@ -18,9 +18,27 @@ Estudos SDD OpenRouter is a project aimed at studying Software Design and Develo
    ```bash
    cd estudos-sdd-openrouter
    ```
-3. Install dependencies:
+3. Install BUN:
+   BUN is a modern JavaScript runtime and package manager. To install it, follow the instructions below:
+   - **Linux/macOS:**
+     ```bash
+     curl -fsSL https://bun.sh/install | bash
+     ```
+   - **Windows:**
+     ```bash
+     powershell -c "irm bun.sh/install.ps1 | iex"
+     ```
+   - **Homebrew (macOS):**
+     ```bash
+     brew install bun
+     ```
+   After installation, verify it by running:
    ```bash
-   npm install
+   bun --version
+   ```
+4. Install dependencies:
+   ```bash
+   bun install
    ```
 
 ## Usage
