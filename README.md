@@ -24,11 +24,10 @@ Estudos SDD OpenRouter is a project aimed at studying Software Design and Develo
    ```
 
 ## Usage
-To start the application, run:
+On main.ts, select the function that you want to test, and run:
 ```bash
-npm start
+bun main.ts
 ```
-Visit `http://localhost:3000` to access the interface.
 
 ## Project Structure
 ```
