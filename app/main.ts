@@ -1,9 +1,9 @@
 import { setupEnv } from "./config/dotenv";
-import { promptViaFetch } from "./testes-fetch/app_prompt_via_fetch_openrouter";
+import { aiSdkProvider } from "./testes-ai-sdk-provider/app_ai_sdk_provider";
 
 async function main(){
     setupEnv();
-    promptViaFetch("Ping");
+    aiSdkProvider("Testando SDK");
 }
 
 main();

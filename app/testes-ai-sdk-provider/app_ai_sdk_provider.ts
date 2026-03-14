@@ -1,33 +1,32 @@
 import "dotenv/config";
+import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+import { generateText, stepCountIs } from "ai";
+import { initLogFile, logStep } from "../util/logger";
 
-export async function testeAiSdkProvider() {
-        console.log("Inicializando");
-        const prompt = "Hello, how are you?";
+export async function aiSdkProvider(prompt:string) {
+    initLogFile();
+    
+    const systemPrompt = "";
+    const openRouterClient = createOpenRouter({
+        apiKey: process.env.OPENROUTER_API_KEY,
+    })
+    
+    const model = getSelectedModel();
 
-        console.log("API Key:", process.env.OPENROUTER_API_KEY ? "Presente" : "Ausente");
-        console.log("Model:", process.env.OPENROUTER_MODEL || "Não definido");
+    const { text } = await generateText({
+        model: openRouterClient(model),
+        system: systemPrompt,
+        prompt,
+        stopWhen: stepCountIs(5),
+        onStepFinish: logStep
+    });
+    console.log(text);
+}
 
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions",{
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                model: process.env.OPENROUTER_MODEL,
-                messages: [
-                    { role: "user", content: prompt}
-                ]
-            })
-        })
+function getSelectedModel(): string{
+    if(!process.env.OPENROUTER_MODEL){
+        throw new Error("OPENROUTER_MODEL not set in .env");
+    }
 
-        console.log("Status da resposta:", response.status);
-
-        if(!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`OpenRouter error: ${response.status} - ${errorText}`);
-        }
-
-        const output = await response.json();
-        console.log(JSON.stringify(output, undefined, " "));
+    return process.env.OPENROUTER_MODEL;
 }

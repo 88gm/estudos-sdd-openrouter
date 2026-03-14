@@ -1,7 +1,6 @@
 import "dotenv/config";
 
 export async function promptViaFetch(prompt:string) {
-    try {
         console.log("API Key:", process.env.OPENROUTER_API_KEY ? "Presente" : "Ausente");
         console.log("Model:", process.env.OPENROUTER_MODEL || "Não definido");
 
@@ -28,7 +27,4 @@ export async function promptViaFetch(prompt:string) {
 
         const output = await response.json();
         console.log(JSON.stringify(output, undefined, " "));
-    } catch (error) {
-        console.error("Erro detalhado:", error);
-    }
 }
