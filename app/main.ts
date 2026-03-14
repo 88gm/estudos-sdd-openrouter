@@ -1,5 +1,5 @@
 import { setupEnv } from "./config/dotenv";
-import { sdkWithTools } from "./tests-ai-sdk-provider/app_sdk_with_tools";
+import { sdkWithTools } from "./tests-ai-sdk-provider/app-sdk-with-tools";
 //import { promptThroughFetch } from './tests-fetch/app_prompt_through_fetch_openrouter';
 
 async function main(){
