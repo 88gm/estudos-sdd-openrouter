@@ -1,29 +1,28 @@
 import { setupEnv } from "./config/dotenv";
-import { sdkWithTools } from "./tests-ai-sdk-provider/app-sdk-with-tools";
-//import { promptThroughFetch } from './tests-fetch/app_prompt_through_fetch_openrouter';
+import { specAgent } from "./my-first-agent/spec-agent";
 
 async function main(){
     setupEnv();
-    const args = process.argv.slice(2); //Remove o 'node' e o nome do script
+    const args = process.argv.slice(2); //Remove 'node' and the script name
     
     if (args.length < 1) {
-        console.error("Uso: node main.ts <prompt> [numero]");
+        console.error("Usage: node main.ts <prompt> [number]");
         process.exit(1);
     }
     
     const prompt = args[0];
-    let numero: number | undefined;
+    let number: number | undefined;
     
     if (args.length >= 2) {
         const parsed = parseInt(args[1], 10);
         if (isNaN(parsed)) {
-            console.error("O segundo parâmetro deve ser um número inteiro.");
+            console.error("The second parameter must be an integer.");
             process.exit(1);
         }
-        numero = parsed;
+        number = parsed;
     }
     
-    sdkWithTools(prompt, numero);
+    specAgent(prompt, number);
 }
 
 main();

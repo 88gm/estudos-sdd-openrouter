@@ -1,0 +1,9 @@
+# Rule: Code Quality
+# Code quality standards
+
+## Guidelines:
+- Use strictly typed TypeScript
+- Write unit tests for all functions
+- Follow SOLID principles
+- Use descriptive names for variables and functions
+- Always write code on english
