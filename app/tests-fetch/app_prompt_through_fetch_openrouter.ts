@@ -1,8 +1,8 @@
 import "dotenv/config";
 
-export async function promptViaFetch(prompt:string) {
-        console.log("API Key:", process.env.OPENROUTER_API_KEY ? "Presente" : "Ausente");
-        console.log("Model:", process.env.OPENROUTER_MODEL || "Não definido");
+export async function promptThroughFetch(prompt:string) {
+        console.log("API Key:", process.env.OPENROUTER_API_KEY ? "Present" : "Absent");
+        console.log("Model:", process.env.OPENROUTER_MODEL || "Not defined");
 
         const response = await fetch("https://openrouter.ai/api/v1/chat/completions",{
             method: "POST",
@@ -18,7 +18,7 @@ export async function promptViaFetch(prompt:string) {
             })
         })
 
-        console.log("Status da resposta:", response.status);
+        console.log("Response status:", response.status);
 
         if(!response.ok) {
             const errorText = await response.text();
