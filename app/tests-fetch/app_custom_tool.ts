@@ -2,7 +2,7 @@ import "../dotenv/config";
 
 async function main() {
     const { readdir } = await import("node:fs/promises");
-    const prompt = "Me diga o que há neste diretório ./";
+    const prompt = "Tell me what's in this directory ./";
     const apiUrl = "https://openrouter.ai/api/v1/chat/completions";
     const model = process.env.OPENROUTER_MODEL;
     const tools = [
