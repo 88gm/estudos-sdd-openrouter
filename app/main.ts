@@ -1,9 +1,11 @@
 import { setupEnv } from "./config/dotenv";
-import { aiSdkProvider } from "./testes-ai-sdk-provider/app_ai_sdk_provider";
+import { sdkWithTools } from "./testes-ai-sdk-provider/app_sdk_with_tools";
 
 async function main(){
     setupEnv();
-    aiSdkProvider("Testando SDK");
+    const prompt = process.argv.slice(2).join(" ");
+    
+    sdkWithTools(prompt);
 }
 
 main();
