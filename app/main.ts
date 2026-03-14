@@ -1,6 +1,5 @@
 import { setupEnv } from "./config/dotenv";
-import { sdkWithTools } from "./tests-ai-sdk-provider/app-sdk-with-tools";
-//import { promptThroughFetch } from './tests-fetch/app_prompt_through_fetch_openrouter';
+import { specAgent } from "./my-first-agent/spec-agent";
 
 async function main(){
     setupEnv();
@@ -23,7 +22,7 @@ async function main(){
         numero = parsed;
     }
     
-    sdkWithTools(prompt, numero);
+    specAgent(prompt, numero);
 }
 
 main();
