@@ -2,8 +2,9 @@ import "dotenv/config";
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { generateText, stepCountIs } from "ai";
 import { initLogFile, logStep } from "../util/logger";
+import { tools } from "../tools";
 
-export async function aiSdkProvider(prompt:string) {
+export async function sdkWithTools(prompt:string, stepLimit?: number) {
     initLogFile();
     
     const systemPrompt = "";
@@ -13,11 +14,14 @@ export async function aiSdkProvider(prompt:string) {
     
     const model = getSelectedModel();
 
+    const stopWhen = stepLimit !== undefined ? stepCountIs(stepLimit) : stepCountIs(500);
+
     const { text } = await generateText({
         model: openRouterClient(model),
         system: systemPrompt,
         prompt,
-        stopWhen: stepCountIs(5),
+        stopWhen,
+        tools,
         onStepFinish: logStep
     });
     console.log(text);
